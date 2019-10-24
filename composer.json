@@ -30,8 +30,8 @@
         "illuminate/routing": "^5.5|^6.0",
         "illuminate/support": "^5.5|^6.0",
         "illuminate/console": "^5.5|^6.0",
-        "mpociot/documentarian": "master",
-        "mpociot/reflection-docblock": "master",
+        "mpociot/documentarian": "dev-master",
+        "mpociot/reflection-docblock": "dev-master",
         "ramsey/uuid": "^3.8",
         "league/flysystem": "^1.0"
     },

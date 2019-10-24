@@ -16,6 +16,9 @@ trait ParamHelpers
             'integer' => function () use ($faker) {
                 return $faker->numberBetween(1, 20);
             },
+            'uuid' => function () use ($faker) {
+                return $faker->uuid();
+            },
             'number' => function () use ($faker) {
                 return $faker->randomFloat();
             },

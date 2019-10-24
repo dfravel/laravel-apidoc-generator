@@ -7,11 +7,21 @@
         "Documentation",
         "Laravel"
     ],
-    "homepage": "http://github.com/mpociot/laravel-apidoc-generator",
+    "homepage": "http://github.com/dfravel/laravel-apidoc-generator",
     "authors": [
         {
             "name": "Marcel Pociot",
             "email": "m.pociot@gmail.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/dfravel/documentarian"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/dfravel/reflection-docblock"
         }
     ],
     "require": {
@@ -20,8 +30,8 @@
         "illuminate/routing": "^5.5|^6.0",
         "illuminate/support": "^5.5|^6.0",
         "illuminate/console": "^5.5|^6.0",
-        "mpociot/documentarian": "^0.3.0",
-        "mpociot/reflection-docblock": "^1.0.1",
+        "mpociot/documentarian": "master",
+        "mpociot/reflection-docblock": "master",
         "ramsey/uuid": "^3.8",
         "league/flysystem": "^1.0"
     },
@@ -57,6 +67,6 @@
             "providers": [
                 "Mpociot\\ApiDoc\\ApiDocGeneratorServiceProvider"
             ]
-       }
+        }
     }
 }

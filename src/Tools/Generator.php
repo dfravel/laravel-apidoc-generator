@@ -88,6 +88,10 @@ class Generator
             'title' => '',
             'description' => '',
             'authenticated' => false,
+            'superadmin' => false,
+            'farmer' => false,
+            'partner' => false,
+            'public' => false
         ];
 
         return $this->iterateThroughStrategies('metadata', $context, [$route, $controller, $method, $rulesToApply]);

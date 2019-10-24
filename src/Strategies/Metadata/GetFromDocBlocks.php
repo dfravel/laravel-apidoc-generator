@@ -4,6 +4,7 @@ namespace Mpociot\ApiDoc\Strategies\Metadata;
 
 use ReflectionClass;
 use ReflectionMethod;
+use Log;
 use Illuminate\Routing\Route;
 use Mpociot\Reflection\DocBlock;
 use Mpociot\Reflection\DocBlock\Tag;
@@ -26,7 +27,72 @@ class GetFromDocBlocks extends Strategy
                 'title' => $routeTitle ?: $methodDocBlock->getShortDescription(),
                 'description' => $methodDocBlock->getLongDescription()->getContents(),
                 'authenticated' => $this->getAuthStatusFromDocBlock($methodDocBlock->getTags()),
+                'superadmin' => $this->getAdminStatusFromDocBlock($methodDocBlock->getTags()),
+                'farmer' => $this->getFarmerStatusFromDocBlock($methodDocBlock->getTags()),
+                'partner' => $this->getPartnerStatusFromDocBlock($methodDocBlock->getTags()),
+                'public' => $this->getPublicStatusFromDocBlock($methodDocBlock->getTags()),
         ];
+    }
+
+    /**
+     * @param array $tags Tags in the method doc block
+     *
+     * @return bool
+     */
+    protected function getPublicStatusFromDocBlock(array $tags)
+    {
+        $authTag = collect($tags)
+            ->first(function ($tag) {
+                return $tag instanceof Tag && strtolower($tag->getName()) === 'public';
+            });
+
+        return (bool) $authTag;
+    }
+
+    /**
+     * @param array $tags Tags in the method doc block
+     *
+     * @return bool
+     */
+    protected function getPartnerStatusFromDocBlock(array $tags)
+    {
+        $authTag = collect($tags)
+            ->first(function ($tag) {
+                return $tag instanceof Tag && strtolower($tag->getName()) === 'partner';
+            });
+
+        return (bool) $authTag;
+    }
+
+    /**
+     * @param array $tags Tags in the method doc block
+     *
+     * @return bool
+     */
+    protected function getFarmerStatusFromDocBlock(array $tags)
+    {
+        $authTag = collect($tags)
+            ->first(function ($tag) {
+                return $tag instanceof Tag && strtolower($tag->getName()) === 'farmer';
+            });
+
+        return (bool) $authTag;
+    }
+
+    /**
+     * @param array $tags Tags in the method doc block
+     *
+     * @return bool
+     */
+    protected function getAdminStatusFromDocBlock(array $tags)
+    {
+        // Log::info(print_r($tags));
+        $adminTag = collect($tags)
+            ->first(function ($tag) {
+                return $tag instanceof Tag && strtolower($tag->getName()) === 'superadmin';
+            });
+
+        return (bool) $adminTag;
     }
 
     /**
@@ -36,7 +102,9 @@ class GetFromDocBlocks extends Strategy
      */
     protected function getAuthStatusFromDocBlock(array $tags)
     {
-        $authTag = collect($tags)
+    //    Log::info(print_r($tags, true));
+
+       $authTag = collect($tags)
             ->first(function ($tag) {
                 return $tag instanceof Tag && strtolower($tag->getName()) === 'authenticated';
             });

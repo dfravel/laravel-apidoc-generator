@@ -16,12 +16,12 @@
     ],
     "repositories": [
         {
-            "type": "vcs",
-            "url": "https://github.com/dfravel/documentarian"
+            "type": "git",
+            "url": "git@github.com:dfravel/documentarian.git"
         },
         {
-            "type": "vcs",
-            "url": "https://github.com/dfravel/reflection-docblock"
+            "type": "git",
+            "url": "git@github.com:dfravel/reflection-docblock.git"
         }
     ],
     "require": {
